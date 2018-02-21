@@ -1,31 +1,28 @@
-import { interestOverTime } from 'google-trends-api'
-import xhook from 'xhook'
+import { fetchPoloniexHistoricalPrice } from './lib/poloniex'
+import { fetchGoogleTrendHistoricalInterest } from './lib/trends'
+import { parseUnixTimestamp } from './lib/util'
 
-xhook.before(request => {
-  request.url = request.url.replace('https://trends.google.com', '')
-})
+;(async function () {
+  const start = new Date()
+  start.setUTCFullYear(start.getUTCFullYear() - 1)
+  start.setMinutes(0)
+  start.setSeconds(0)
+  start.setHours(0)
 
-interestOverTime({
-  keyword: 'Bitcoin',
-}).then(console.log)
+  const prices = await fetchPoloniexHistoricalPrice('btc', start)
+  const pricesStartDate = parseUnixTimestamp(prices[0].date)
+  const interests = await fetchGoogleTrendHistoricalInterest('Bitcoin', pricesStartDate)
 
-// fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD').then(res => res.json()).then(console.log)
+  const data = interests.map(interest => {
+    const price = prices.find(price => price.date == interest.time)
+    return {
+      date: parseUnixTimestamp(price.date),
+      price: price.close,
+      interest: interest.value[0]
+    }
+  })
 
-// const googleTrends = require('google-trends-api')
-// const axios = require('axios').default
-
-// async function main() {
-//   const resultsAsJSON = await googleTrends.interestOverTime({
-//     keyword: 'Bitcoin',
-//     startTime: new Date('2018-01-01')
-//   })
-//   const results = JSON.parse(resultsAsJSON)
-//   const formatted = results.default.timelineData.map(datum => ({
-//     a: console.log(datum.formattedAxisTime),
-//     date: +datum.time,
-//     interest: datum.value[0]
-//   }))
-//   console.log(formatted)
-// }
-
-// main()
+  document.write(`
+    <pre>${JSON.stringify(data, null, 2)}</pre>
+  `)
+})()
