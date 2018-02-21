@@ -9,7 +9,8 @@ export const fetchGoogleTrendHistoricalInterest = async (keyword, startDate, end
   const raw = await GoogleTrendsAPI.interestOverTime({
     keyword,
     startTime: startDate,
-    endTime: endDate
+    endTime: endDate,
+    granularTimeResolution: true
   })
   return JSON.parse(raw).default.timelineData
 }

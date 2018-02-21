@@ -11,5 +11,9 @@ export const fetchPoloniexHistoricalPrice = async (symbol, startDate, endDate = 
   url.searchParams.append('end', toUnixTimestamp(endDate))
   url.searchParams.append('start', toUnixTimestamp(startDate))
   const response = await fetch(url.toString())
-  return await response.json()
+  const data = await response.json()
+  if (data.error) {
+    throw new Error(data.error)
+  }
+  return data
 }
