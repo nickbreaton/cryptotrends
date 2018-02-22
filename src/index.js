@@ -57,6 +57,7 @@ function render(points) {
   const height = +svg.attr('height')
 
   const x = d3.scaleTime().range([0, width])
+  const xb = d3.scaleBand().rangeRound([0, width]).padding(0.5)
   const y0 = d3.scaleLinear().range([height, 0])
   const y1 = d3.scaleLinear().range([height, 0])
 
@@ -65,6 +66,7 @@ function render(points) {
     .y(d => y0(d.price))
 
   const interestLine = d3.line()
+    .curve(d3.curveBasis)
     .x(d => x(d.date))
     .y(d => y1(d.interest))
 
@@ -72,15 +74,22 @@ function render(points) {
   y0.domain([ 0, d3.max(points, d => d.price) ])
   y1.domain([ 0, d3.max(points, d => d.interest) ])
 
-  svg.append('path')
-    .data([ points ])
-    .attr('d', priceLine)
-    .attr('stroke', 'blue')
-    .attr('fill', 'transparent')
+  svg
+    .selectAll('rect')
+    .data(points)
+    .enter()
+    .append('rect')
+    .attr('fill', '#dfe6e9')
+    .attr('x', d => x(d.date))
+    .attr('y', d => y0(d.price))
+    .attr('width', width / points.length)
+    .attr('height', d => height - y0(d.price))
 
   svg.append('path')
     .data([ points ])
     .attr('d', interestLine)
-    .attr('stroke', 'red')
+    .attr('stroke', '#00b894')
+    .attr('stroke-width', '4px')
     .attr('fill', 'transparent')
+
 }
