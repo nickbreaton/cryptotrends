@@ -5,7 +5,6 @@
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "google-trends-api": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "react": "^16.2.0",
@@ -13,17 +12,13 @@
     "redux-box": "nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e",
     "redux-persist": "^5.9.1",
     "redux-worker-middleware": "^1.0.0",
-    "regenerator-runtime": "^0.11.1",
     "styled-components": "^3.1.6",
     "xhook": "^1.4.7"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-minify": "^0.3.0",
     "babel-preset-react": "^6.24.1",
-    "babili-webpack-plugin": "^0.1.2",
     "copy-webpack-plugin": "^4.4.1",
     "html-webpack-plugin": "Graham42/html-webpack-plugin#4df601b7fa89e0e30535f759b469bcfe7073a018",
     "rimraf": "^2.6.2",
