@@ -16,7 +16,7 @@ const actions = {
     payload: points
   }),
   pointsFailure: message => ({
-    type: 'POINTS_SUCCESS',
+    type: 'POINTS_FAILURE',
     payload: message
   })
 }
@@ -27,6 +27,9 @@ const mutations = {
   },
   POINTS_SUCCESS: (state, action) => {
     state.points = action.payload
+    state.isLoading = false
+  },
+  POINTS_FAILURE: (state, action) => {
     state.isLoading = false
   }
 }

@@ -1,18 +1,20 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 
 const relative = (...paths) => {
   return path.resolve(__dirname, ...paths)
 }
 
 module.exports = {
+  mode: 'development',
   entry: [
     relative('src/index.js')
   ],
   output: {
     path: relative('dist'),
-    filename: '[hash].js',
+    filename: '[hash].[name].js',
     publicPath: ''
   },
   module: {
@@ -28,6 +30,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: relative('src/index.html')
+    }),
+    new WorkboxWebpackPlugin({
+      globDirectory: 'dist',
+      globPatterns: ['**/*'],
+      swDest: relative('dist/sw.js'),
+      clientsClaim: true,
+      skipWaiting: true,
     })
   ],
   devServer: {

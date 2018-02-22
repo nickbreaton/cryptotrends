@@ -1,28 +1,35 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server -d --devtool sourcemap",
-    "build": "rimraf dist && webpack -p"
+    "start": "webpack-dev-server",
+    "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "google-trends-api": "^4.6.0",
     "lodash.uniq": "^4.5.0",
-    "redux-box": "https://github.com/nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "redux-box": "nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e",
     "redux-worker-middleware": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
+    "styled-components": "^3.1.6",
     "xhook": "^1.4.7"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-minify": "^0.3.0",
     "babel-preset-react": "^6.24.1",
+    "babili-webpack-plugin": "^0.1.2",
     "copy-webpack-plugin": "^4.4.1",
-    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-plugin": "Graham42/html-webpack-plugin#4df601b7fa89e0e30535f759b469bcfe7073a018",
     "rimraf": "^2.6.2",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1",
-    "worker-loader": "^1.1.0"
+    "webpack": "^4.0.0-beta.2",
+    "webpack-cli": "^2.0.6",
+    "webpack-dev-server": "3.0.0-beta.1",
+    "workbox-webpack-plugin": "^2.1.2",
+    "worker-loader": "nickbreaton/worker-loader#f4d1056e96319a1dacff3e268929d9891ace259a"
   }
 }
