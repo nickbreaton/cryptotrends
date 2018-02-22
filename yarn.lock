@@ -2781,9 +2781,9 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.3.x"
 
-html-webpack-plugin@Graham42/html-webpack-plugin#4df601b7fa89e0e30535f759b469bcfe7073a018:
+html-webpack-plugin@webpack-contrib/html-webpack-plugin:
   version "2.30.1"
-  resolved "https://codeload.github.com/Graham42/html-webpack-plugin/tar.gz/4df601b7fa89e0e30535f759b469bcfe7073a018"
+  resolved "https://codeload.github.com/webpack-contrib/html-webpack-plugin/tar.gz/ebfc2771d41a6ab043595d3c621528aee020e2f9"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
@@ -4628,9 +4628,9 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-redux-box@nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e:
+redux-box@nickbreaton/redux-box#b17a3fe:
   version "1.4.2"
-  resolved "https://codeload.github.com/nickbreaton/redux-box/tar.gz/aca215d29975a32b2b001aa1dfc1da36b3576c0e"
+  resolved "https://codeload.github.com/nickbreaton/redux-box/tar.gz/b17a3fec79bf75c4717db996d4c6d3812b726ad8"
   dependencies:
     babel-polyfill "^6.26.0"
     immer "^0.8.4"
@@ -5982,7 +5982,7 @@ worker-farm@^1.5.2:
     errno "^0.1.4"
     xtend "^4.0.1"
 
-worker-loader@nickbreaton/worker-loader#f4d1056e96319a1dacff3e268929d9891ace259a:
+worker-loader@nickbreaton/worker-loader#f4d105:
   version "1.1.0"
   resolved "https://codeload.github.com/nickbreaton/worker-loader/tar.gz/f4d1056e96319a1dacff3e268929d9891ace259a"
   dependencies:
