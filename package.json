@@ -5,6 +5,7 @@
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
+    "d3": "^4.13.0",
     "google-trends-api": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "react": "^16.2.0",
