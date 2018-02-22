@@ -5989,13 +5989,6 @@ worker-loader@nickbreaton/worker-loader#f4d1056e96319a1dacff3e268929d9891ace259a
     loader-utils "^1.0.0"
     schema-utils "^0.3.0"
 
-worker-loader@webpack-contrib/worker-loader#98816a1a1962d805d082951c5dfc9f0025cf1c00:
-  version "1.1.0"
-  resolved "https://codeload.github.com/webpack-contrib/worker-loader/tar.gz/98816a1a1962d805d082951c5dfc9f0025cf1c00"
-  dependencies:
-    loader-utils "^1.0.0"
-    schema-utils "^0.3.0"
-
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
