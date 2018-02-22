@@ -34,6 +34,9 @@ module.exports = {
     new WorkboxWebpackPlugin({
       globDirectory: 'dist',
       globPatterns: ['**/*'],
+      globIgnores: [
+        '_redirects'
+      ],
       swDest: relative('dist/sw.js'),
       clientsClaim: true,
       skipWaiting: true,
