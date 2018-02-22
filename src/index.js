@@ -1,40 +1,25 @@
-import { fetchPoloniexHistoricalPrice } from './lib/poloniex'
-import { fetchGoogleTrendHistoricalInterest } from './lib/trends'
-import { parseUnixTimestamp } from './lib/util'
-import uniq from 'lodash.uniq'
+import 'regenerator-runtime/runtime'
+import { createStore } from 'redux-box'
+import { module as app } from './state/app'
+import createWorkerMiddleware from 'redux-worker-middleware'
+import Worker from './workers/my.worker'
 
-async function fetchPoints(name, symbol, start, end) {
-  const prices = await fetchPoloniexHistoricalPrice(symbol, start, end)
-  const pricesStartDate = parseUnixTimestamp(prices[0].date)
-  const interests = await fetchGoogleTrendHistoricalInterest(name, pricesStartDate, end)
+const store = createStore([ app ], {
+  middlewares: [
+    createWorkerMiddleware(new Worker)
+  ]
+})
 
-  const potentialDates = [...prices, ...interests].map(entitiy => {
-    return +(entitiy.date || entitiy.time)
-  })
+store.subscribe(() => {
+  document.write(`
+    <pre>${JSON.stringify(store.getState(), null, 2)}</pre>
+  `)
+})
 
-  const unqiueDates = uniq(potentialDates).sort()
+const start = new Date()
+start.setUTCFullYear(start.getUTCFullYear() - 1)
 
-  const potentialPoints = unqiueDates.map(date => {
-    let price, interest;
-    if (
-      (price = prices.find(price => price.date === date)) &&
-      (interest = interests.find(interest => +interest.time === date))
-    ) return {
-      date: parseUnixTimestamp(price.date),
-      price: price.close,
-      interest: interest.value[0]
-    }
-  })
+store.dispatch(app.actions.pointsRequest(
+  'Bitcoin', 'BTC', start
+))
 
-  return potentialPoints.filter(Boolean)
-}
-
-;(async function () {
-  const start = new Date()
-  start.setUTCFullYear(start.getUTCFullYear() - 20)
-
-  const data = await fetchPoints('Ethereum', 'ETH', start)
-
-  console.log(data)
-  document.write(`<pre>${JSON.stringify(data, null, 2)}</pre>`)
-})()

@@ -5,8 +5,11 @@
     "build": "rimraf dist && webpack -p"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "google-trends-api": "^4.6.0",
     "lodash.uniq": "^4.5.0",
+    "redux-box": "https://github.com/nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e",
+    "redux-worker-middleware": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
     "xhook": "^1.4.7"
   },
@@ -19,6 +22,7 @@
     "html-webpack-plugin": "^2.30.1",
     "rimraf": "^2.6.2",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "worker-loader": "^1.1.0"
   }
 }

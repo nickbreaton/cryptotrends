@@ -8,7 +8,6 @@ const relative = (...paths) => {
 
 module.exports = {
   entry: [
-    'regenerator-runtime/runtime',
     relative('src/index.js')
   ],
   output: {
@@ -18,7 +17,8 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.worker\.js$/, use: ['worker-loader', 'babel-loader'] }
     ]
   },
   plugins: [
