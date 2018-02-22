@@ -5002,6 +5002,10 @@ redux-box@nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e:
     redux "^3.7.2"
     redux-saga "^0.16.0"
 
+redux-persist@^5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.9.1.tgz#83bd4abd526ef768f63fceee338fa9d8ed6552d6"
+
 redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
@@ -6340,13 +6344,6 @@ worker-farm@^1.5.2:
   dependencies:
     errno "^0.1.4"
     xtend "^4.0.1"
-
-worker-loader@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/worker-loader/-/worker-loader-1.1.0.tgz#8cf21869a07add84d66f821d948d23c1eb98e809"
-  dependencies:
-    loader-utils "^1.0.0"
-    schema-utils "^0.3.0"
 
 worker-loader@nickbreaton/worker-loader#f4d1056e96319a1dacff3e268929d9891ace259a:
   version "1.1.0"

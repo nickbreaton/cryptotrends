@@ -11,6 +11,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "redux-box": "nickbreaton/redux-box#aca215d29975a32b2b001aa1dfc1da36b3576c0e",
+    "redux-persist": "^5.9.1",
     "redux-worker-middleware": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
     "styled-components": "^3.1.6",
