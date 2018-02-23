@@ -34,9 +34,9 @@ start.setFullYear(start.getFullYear() - 1)
 
 // Uncomment to refresh data:
 
-store.dispatch(app.actions.pointsRequest(
-  'Ethereum', 'ETH', start
-))
+// store.dispatch(app.actions.pointsRequest(
+//   'Ethereum', 'ETH', start
+// ))
 
 // -------- Visualization Code -------
 import * as d3 from 'd3'
@@ -45,8 +45,9 @@ import * as d3 from 'd3'
 const svg = d3.select('#root').append('svg')
 
 svg
-  .attr('width', 750)
+  .attr('width', 1200)
   .attr('height', 400)
+  .style('background', '#2c4764')
 
 const width = +svg.attr('width')
 const height = +svg.attr('height')
@@ -55,18 +56,20 @@ const x = d3.scaleTime().range([0, width])
 const y0 = d3.scaleLinear().range([height, 0])
 const y1 = d3.scaleLinear().range([height, 0])
 
-const priceLine = d3.line()
-  .curve(d3.curveBasis)
+const priceLine = d3.area()
+  .curve(d3.curveCardinal)
   .x(d => x(d.date))
-  .y(d => y0(d.price))
+  .y1(d => y0(d.price))
+  .y0(y0(0))
 
-const interestLine = d3.line()
-  .curve(d3.curveBasis)
+const interestLine = d3.area()
+  .curve(d3.curveCardinal)
   .x(d => x(d.date))
-  .y(d => y1(d.interest))
+  .y1(d => y1(d.interest))
+  .y0(y1(0))
 
 function render(points) {
-
+  console.log(points.length)
   // parse dates
   points = points.map(point => Object.assign({}, point, {
     date: new Date(point.date)
@@ -79,17 +82,18 @@ function render(points) {
   svg.append('path')
     .data([ points ])
     .attr('d', interestLine)
-    .attr('stroke', '#006266')
-    .attr('stroke-width', '4px')
-    .attr('fill', 'transparent')
+    .attr('stroke', 'rgba(0,0,0,0.2)')
+    .attr('stroke-width', '3')
+    .attr('fill', 'rgba(0,0,0,0.2)')
 
   svg.append('path')
     .data([ points ])
     .attr('d', priceLine)
-    .attr('stroke', '#EE5A24')
-    .attr('stroke-width', '4px')
-    .attr('fill', 'transparent')
-
-
+    .attr('stroke', '#03b0ec')
+    .attr('stroke-width', '3px')
+    .attr('stroke-opacity', '0.4')
+    .attr('fill', '#03b0ec')
+    .attr('fill-opacity', '0.3')
+    .attr('opacity', '0.9')
 
 }
