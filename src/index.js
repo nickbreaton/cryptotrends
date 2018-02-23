@@ -34,62 +34,62 @@ start.setFullYear(start.getFullYear() - 1)
 
 // Uncomment to refresh data:
 
-// store.dispatch(app.actions.pointsRequest(
-//   'Bitcoin', 'BTC', start
-// ))
+store.dispatch(app.actions.pointsRequest(
+  'Ethereum', 'ETH', start
+))
 
 // -------- Visualization Code -------
 import * as d3 from 'd3'
 
-function render(points) {
-  const svg = d3.select('#root').append('svg')
 
-  svg
-    .attr('width', 750)
-    .attr('height', 400)
+const svg = d3.select('#root').append('svg')
+
+svg
+  .attr('width', 750)
+  .attr('height', 400)
+
+const width = +svg.attr('width')
+const height = +svg.attr('height')
+
+const x = d3.scaleTime().range([0, width])
+const y0 = d3.scaleLinear().range([height, 0])
+const y1 = d3.scaleLinear().range([height, 0])
+
+const priceLine = d3.line()
+  .curve(d3.curveBasis)
+  .x(d => x(d.date))
+  .y(d => y0(d.price))
+
+const interestLine = d3.line()
+  .curve(d3.curveBasis)
+  .x(d => x(d.date))
+  .y(d => y1(d.interest))
+
+function render(points) {
 
   // parse dates
   points = points.map(point => Object.assign({}, point, {
     date: new Date(point.date)
   }))
 
-  const width = +svg.attr('width')
-  const height = +svg.attr('height')
-
-  const x = d3.scaleTime().range([0, width])
-  const xb = d3.scaleBand().rangeRound([0, width]).padding(0.5)
-  const y0 = d3.scaleLinear().range([height, 0])
-  const y1 = d3.scaleLinear().range([height, 0])
-
-  const priceLine = d3.line()
-    .x(d => x(d.date))
-    .y(d => y0(d.price))
-
-  const interestLine = d3.line()
-    .curve(d3.curveBasis)
-    .x(d => x(d.date))
-    .y(d => y1(d.interest))
-
   x.domain(d3.extent(points, d => d.date))
   y0.domain([ 0, d3.max(points, d => d.price) ])
   y1.domain([ 0, d3.max(points, d => d.interest) ])
 
-  svg
-    .selectAll('rect')
-    .data(points)
-    .enter()
-    .append('rect')
-    .attr('fill', '#dfe6e9')
-    .attr('x', d => x(d.date))
-    .attr('y', d => y0(d.price))
-    .attr('width', width / points.length)
-    .attr('height', d => height - y0(d.price))
-
   svg.append('path')
     .data([ points ])
     .attr('d', interestLine)
-    .attr('stroke', '#00b894')
+    .attr('stroke', '#006266')
     .attr('stroke-width', '4px')
     .attr('fill', 'transparent')
+
+  svg.append('path')
+    .data([ points ])
+    .attr('d', priceLine)
+    .attr('stroke', '#EE5A24')
+    .attr('stroke-width', '4px')
+    .attr('fill', 'transparent')
+
+
 
 }
