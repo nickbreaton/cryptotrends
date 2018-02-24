@@ -1,8 +1,10 @@
 import BTC from 'cryptocoins-icons/SVG/BTC.svg'
 import ETH from 'cryptocoins-icons/SVG/ETH.svg'
-import XRP from 'cryptocoins-icons/SVG/XRP.svg'
 import LTC from 'cryptocoins-icons/SVG/LTC.svg'
-import DOGE from 'cryptocoins-icons/SVG/DOGE.svg'
+import STR from 'cryptocoins-icons/SVG/STR.svg'
+import XMR from 'cryptocoins-icons/SVG/XMR.svg'
+import XRP from 'cryptocoins-icons/SVG/XRP.svg'
+import ZEC from 'cryptocoins-icons/SVG/ZEC-alt.svg'
 
 export const coins = new Map([
   ['BTC', {
@@ -13,7 +15,7 @@ export const coins = new Map([
   ['ETH', {
     name: 'Ethereum',
     icon: ETH,
-    color: '#ECF0F1'
+    color: '#FFF'
   }],
   ['XRP', {
     name: 'Ripple',
@@ -23,12 +25,22 @@ export const coins = new Map([
   ['LTC', {
     name: 'Litecoin',
     icon: LTC,
-    color: '#88CBF5'
+    color: '#989898'
   }],
-  ['DOGE', {
-    name: 'Dogecoin',
-    icon: DOGE,
-    color: '#ba9f33'
-  }]
+  ['XMR', {
+    name: 'Monero',
+    icon: XMR,
+    color: '#f26822'
+  }],
+  ['STR', {
+    name: 'Stellar',
+    icon: STR,
+    color: '#cef0fa'
+  }],
+  ['ZEC', {
+    name: 'Zcash',
+    icon: ZEC,
+    color: '#ce842a'
+  }],
 ])
 
