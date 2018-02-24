@@ -19,6 +19,10 @@ const actions = {
   pointsFailure: message => ({
     type: 'POINTS_FAILURE',
     payload: message
+  }),
+  setCurrentCoin: code => ({
+    type: 'CURRENT_COIN_SET',
+    payload: code
   })
 }
 
@@ -32,6 +36,9 @@ const mutations = {
   },
   POINTS_FAILURE: (state, action) => {
     state.isLoading = false
+  },
+  CURRENT_COIN_SET: (state, action) => {
+    state.currentCoin = action.payload
   }
 }
 

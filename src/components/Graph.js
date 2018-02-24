@@ -5,7 +5,12 @@ import { coins } from '../lib/coins'
 
 class Graph extends Component {
   componentDidMount() {
-    store.subscribe(() => this.graph())
+    this.unsub = store.subscribe(this.graph)
+    window.addEventListener('resize', this.graph)
+  }
+  componentWillUnmount() {
+    this.unsub()
+    window.removeEventListener('resize', this.graph)
   }
   render() {
     this.graph()
@@ -13,7 +18,7 @@ class Graph extends Component {
       <svg ref={svg => this.svg = svg} width={900} height={400} />
     )
   }
-  graph() {
+  graph = () => {
     window.requestAnimationFrame(() => {
       let { app: { isLoading, points, currentCoin } } = store.getState()
 
