@@ -2,7 +2,8 @@ import { createSagas } from 'redux-box'
 
 const state = {
   points: [],
-  isLoading: false
+  isLoading: false,
+  currentCoin: 'ETH'
 }
 
 const actions = {

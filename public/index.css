@@ -1,6 +1,6 @@
 :root {
-  --color-price: #00c7bd;
-  --color-interest: #588fd4;
+  --color-price: transparent;
+  --color-interest: #1c2029;
   --color-back: #353c4e;
   --line-stroke-width: 2.5px;
 }
@@ -23,12 +23,20 @@ body {
   stroke: var(--color-interest);
 }
 
+.line__point--price {
+  fill: var(--color-price);
+}
+
+.line__point--interest {
+  fill: var(--color-interest);
+}
+
 .line__area--price {
   fill: var(--color-price);
-  opacity: 0.1;
+  opacity: 0;
 }
 
 .line__area--interest {
   fill: var(--color-interest);
-  opacity: 0.1;
+  opacity: 0.5;
 }
