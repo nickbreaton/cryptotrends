@@ -15,7 +15,7 @@ class Graph extends Component {
   render() {
     this.graph()
     return (
-      <svg ref={svg => this.svg = svg} width={900} height={400} />
+      <svg ref={svg => this.svg = svg} className='graph' />
     )
   }
   graph = () => {
@@ -67,7 +67,7 @@ class Graph extends Component {
         svg.append('path')
           .data([ points ])
           .attr('d', priceLine)
-          .attr('class', 'line line--price')
+          .attr('class', 'graph__line graph__line--price')
 
         svg.selectAll('.a')
           .data(points)
@@ -76,19 +76,19 @@ class Graph extends Component {
           .attr('r', 3.5)
           .attr('cx', d => x(d.date))
           .attr('cy', d => y0(d.price))
-          .attr('class', 'line__point line__point--price')
+          .attr('class', 'graph__line__point graph__line__point--price')
       }
 
       function interest() {
         svg.append('path')
           .data([ points ])
           .attr('d', interestArea)
-          .attr('class', 'line__area line__area--interest')
+          .attr('class', 'graph__line__area graph__line__area--interest')
 
         svg.append('path')
           .data([ points ])
           .attr('d', interestLine)
-          .attr('class', 'line line--interest')
+          .attr('class', 'graph__line graph__line--interest')
 
         svg.selectAll('.b')
           .data(points)
@@ -97,7 +97,7 @@ class Graph extends Component {
           .attr('r', 3.5)
           .attr('cx', d => x(d.date))
           .attr('cy', d => y1(d.interest))
-          .attr('class', 'line__point line__point--interest')
+          .attr('class', 'graph__line__point graph__line__point--interest')
       }
     })
   }

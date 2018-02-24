@@ -28,33 +28,39 @@ main {
   justify-content: center;
 }
 
-.line {
+.graph {
+  width: 100%;
+  height: 40rem;
+  margin: 2rem;
+}
+
+.graph__line {
   stroke-width: var(--line-stroke-width);
   fill: transparent;
 }
 
-.line--price {
+.graph__line--price {
   stroke: var(--color-primary);
 }
 
-.line--interest {
+.graph__line--interest {
   stroke: var(--color-secondary);
 }
 
-.line__point--price {
+.graph__line__point--price {
   fill: var(--color-primary);
 }
 
-.line__point--interest {
+.graph__line__point--interest {
   fill: var(--color-secondary);
 }
 
-.line__area--price {
+.graph__line__area--price {
   fill: var(--color-primary);
   opacity: 0;
 }
 
-.line__area--interest {
+.graph__line__area--interest {
   fill: var(--color-secondary);
   opacity: 0.5;
 }
@@ -89,4 +95,15 @@ main {
   width: 1em;
   height: 1em;
   margin-right: 0.75em;
+}
+
+@media (max-width: 60rem) {
+  .menu {
+    display: none;
+  }
+
+  .graph {
+    height: 20rem;
+    margin: 0;
+  }
 }
