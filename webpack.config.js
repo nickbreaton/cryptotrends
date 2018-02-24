@@ -20,6 +20,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.svg$/, use: ['babel-loader', 'svg-react-loader'] },
       { test: /\.worker\.js$/, use: ['worker-loader', 'babel-loader'] }
     ]
   },
