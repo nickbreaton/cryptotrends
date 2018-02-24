@@ -5,6 +5,12 @@
   --line-stroke-width: 2.5px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--color-back);
   height: 100vh;
@@ -39,4 +45,10 @@ body {
 .line__area--interest {
   fill: var(--color-interest);
   opacity: 0.5;
+}
+
+.menu {
+  background: var(--color-interest);
+  display: inline-flex;
+  padding: 2rem;
 }
