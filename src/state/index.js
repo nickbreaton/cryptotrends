@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage'
 
 const store = createStore([ app ], {
   middlewares: [
-    createWorkerMiddleware(new PointsWorker)
+    createWorkerMiddleware(new PointsWorker),
   ],
   decorateReducer: reducer => {
     return persistReducer({
@@ -18,5 +18,21 @@ const store = createStore([ app ], {
 })
 
 persistStore(store)
+const start = new Date()
+start.setFullYear(start.getFullYear() - 1)
+
+import { coins } from '../lib/coins'
+
+let lastCoin = null
+store.subscribe(() => {
+  const { app: { currentCoin } } = store.getState()
+  if (lastCoin !== currentCoin) {
+    document.body.style.setProperty('--color-primary', coins.get(currentCoin).color)
+    setTimeout(() => store.dispatch(app.actions.pointsRequest(
+      coins.get(currentCoin).name, currentCoin, start
+    )))
+  }
+  lastCoin = currentCoin
+})
 
 export { store }

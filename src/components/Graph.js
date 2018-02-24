@@ -41,12 +41,7 @@ class Graph extends Component {
         .x(d => x(d.date))
         .y(d => y0(d.price))
 
-      const priceArea = d3.area()
-        .x(d => x(d.date))
-        .y0(y0(0))
-        .y1(d => y0(d.price))
-
-      const interestLine = d3.line()
+        const interestLine = d3.line()
         .x(d => x(d.date))
         .y(d => y1(d.interest))
 
@@ -69,13 +64,6 @@ class Graph extends Component {
       price()
 
       function price() {
-        svg.append('path')
-          .data([ points ])
-          .attr('d', priceArea)
-          .attr('class', 'line__area line__area--price')
-
-        svg.node().style.setProperty('--color-price', coins.get(currentCoin).color)
-
         svg.append('path')
           .data([ points ])
           .attr('d', priceLine)
