@@ -4,6 +4,7 @@ import Graph from './components/Graph'
 import React from 'react'
 import { CoinConsumer, CoinProvider } from './components/CoinContext'
 import { LocationFallback } from './components/Location'
+import { registerCache } from './lib/cache'
 
 const CoinColorObserver = () => (
   <CoinConsumer>
@@ -27,6 +28,5 @@ const App = () => (
   </CoinProvider>
 )
 
-render((
-  <App />
-), document.getElementById('root'))
+render(<App />, document.getElementById('root'))
+registerCache()

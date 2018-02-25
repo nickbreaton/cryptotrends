@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "0.0.1",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "rimraf dist && webpack --mode production"
@@ -10,6 +11,7 @@
     "d3": "^4.13.0",
     "google-trends-api": "^4.6.0",
     "history": "^4.7.2",
+    "localforage": "^1.5.7",
     "lodash.uniq": "^4.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

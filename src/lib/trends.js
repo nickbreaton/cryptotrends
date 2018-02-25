@@ -5,11 +5,10 @@ xhook.before(request => {
   request.url = request.url.replace('https://trends.google.com', '')
 })
 
-export const fetchGoogleTrendHistoricalInterest = async (keyword, startDate, endDate) => {
+export const fetchGoogleTrendHistoricalInterest = async (keyword, startDate) => {
   const raw = await GoogleTrendsAPI.interestOverTime({
     keyword,
     startTime: startDate,
-    endTime: endDate,
     granularTimeResolution: true
   })
   return JSON.parse(raw).default.timelineData
