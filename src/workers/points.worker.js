@@ -12,6 +12,7 @@ self.addEventListener('message', async ({ data }) => {
     let points = await localForage.getItem(persistKey)
 
     if (!points) {
+      fail
       const prices = await fetchPoloniexHistoricalPrice(
         code,
         parseUnixTimestamp(start),

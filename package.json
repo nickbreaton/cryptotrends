@@ -2,7 +2,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --devtool source-map",
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "google-trends-api": "^4.6.0",
     "history": "^4.7.2",
     "localforage": "^1.5.7",
+    "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

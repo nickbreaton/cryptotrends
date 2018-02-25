@@ -3,8 +3,11 @@ import { coins } from '../lib/coins'
 import { WindowSize } from 'react-fns'
 import * as d3 from 'd3'
 import React, { Component } from 'react'
+import debounce from 'lodash.debounce'
 
 class Graph extends Component {
+  initial = true
+
   render() {
     return (
       <WindowSize>
@@ -19,86 +22,142 @@ class Graph extends Component {
       </WindowSize>
     )
   }
-  graph = ({ isLoading, points, coin }) => {
+
+  graph = debounce((state) => {
     window.requestAnimationFrame(() => {
       // do no proceed if missing data
-      if (!this.svg || isLoading) return
+      if (!this.svg || !state.points.length) return
 
-      const svg = d3.select(this.svg)
-
-      svg.node().innerHTML = ''
-
-      const padding = 45
-      const width = svg.node().getBoundingClientRect().width - padding
-      const height = svg.node().getBoundingClientRect().height - padding
-
-      const x = d3.scaleTime().range([padding, width])
-      const y0 = d3.scaleLinear().range([height, padding])
-      const y1 = d3.scaleLinear().range([height, padding])
-
-      const priceLine = d3.line()
-        .x(d => x(d.date))
-        .y(d => y0(d.price))
-
-        const interestLine = d3.line()
-        .x(d => x(d.date))
-        .y(d => y1(d.interest))
-
-      const interestArea = d3.area()
-        .x(d => x(d.date))
-        .y0(y1(0))
-        .y1(d => y1(d.interest))
-
-      // parse dates
-      points = points
-        .map(point => Object.assign({}, point, {
-          date: new Date(point.date)
-        }))
-
-      x.domain(d3.extent(points, d => d.date))
-      y0.domain([ d3.min(points, d => d.price), d3.max(points, d => d.price) ])
-      y1.domain([ d3.min(points, d => d.interest), d3.max(points, d => d.interest) ])
-
-      interest()
-      price()
-
-      function price() {
-        svg.append('path')
-          .data([ points ])
-          .attr('d', priceLine)
-          .attr('class', 'graph__line graph__line--price')
-
-        svg.selectAll('.a')
-          .data(points)
-          .enter()
-          .append('circle')
-          .attr('r', 3.5)
-          .attr('cx', d => x(d.date))
-          .attr('cy', d => y0(d.price))
-          .attr('class', 'graph__line__point graph__line__point--price')
-      }
-
-      function interest() {
-        svg.append('path')
-          .data([ points ])
-          .attr('d', interestArea)
-          .attr('class', 'graph__line__area graph__line__area--interest')
-
-        svg.append('path')
-          .data([ points ])
-          .attr('d', interestLine)
-          .attr('class', 'graph__line graph__line--interest')
-
-        svg.selectAll('.b')
-          .data(points)
-          .enter()
-          .append('circle')
-          .attr('r', 3.5)
-          .attr('cx', d => x(d.date))
-          .attr('cy', d => y1(d.interest))
-          .attr('class', 'graph__line__point graph__line__point--interest')
+      if (this.initial) {
+        this.graphInitial(state)
+        this.initial = false
+      } else {
+        this.graphUpdate(state)
       }
     })
+  }, 1000 / 60)
+
+  graphInitial = ({ points, coin }) => {
+    const svg = d3.select(this.svg)
+
+    svg.node().innerHTML = ''
+
+    const padding = 45
+    const width = svg.node().getBoundingClientRect().width - padding
+    const height = svg.node().getBoundingClientRect().height - padding
+
+    const x = this.x = d3.scaleTime().range([padding, width])
+    const y0 = this.y0 = d3.scaleLinear().range([height, padding])
+    const y1 = this.y1 = d3.scaleLinear().range([height, padding])
+
+    const priceLine = this.priceLine = d3.line()
+      .x(d => x(d.date))
+      .y(d => y0(d.price))
+
+    const interestLine = this.interestLine = d3.line()
+      .x(d => x(d.date))
+      .y(d => y1(d.interest))
+
+    const interestArea = this.interestArea = d3.area()
+      .x(d => x(d.date))
+      .y0(y1(0))
+      .y1(d => y1(d.interest))
+
+    // parse dates
+    points = points.map(point => ({
+      ...point,
+      date: new Date(point.date)
+    }))
+
+    x.domain(d3.extent(points, d => d.date))
+    y0.domain([ 0, d3.max(points, d => d.price) ])
+    y1.domain([ 0, d3.max(points, d => d.interest) ])
+
+    const price = () => {
+      svg
+        .append('path')
+        .attr('class', 'graph__line graph__line--price')
+        .data([ points ])
+        .attr('d', priceLine)
+
+      svg
+        .selectAll('.graph__line__point--price')
+        .data(points)
+        .enter()
+        .append('circle')
+        .attr('class', 'graph__line__point graph__line__point--price')
+        .attr('r', 3.5)
+        .attr('cx', d => x(d.date))
+        .attr('cy', d => y0(d.price))
+    }
+
+    const interest = () => {
+      svg.append('path')
+        .attr('class', 'graph__line__area graph__line__area--interest')
+        .data([ points ])
+        .attr('d', interestArea)
+
+      svg.append('path')
+        .attr('class', 'graph__line graph__line--interest')
+        .data([ points ])
+        .attr('d', interestLine)
+
+      svg
+        .selectAll('.graph__line__point--interest')
+        .data(points)
+        .enter()
+        .append('circle')
+        .attr('r', 3.5)
+        .attr('cx', d => x(d.date))
+        .attr('cy', d => y1(d.interest))
+        .attr('class', 'graph__line__point graph__line__point--interest')
+    }
+
+    interest()
+    price()
+  }
+
+  graphUpdate = ({ points, coin }) => {
+    console.log('test')
+
+    const svg = d3.select(this.svg)
+
+    points = points.map(point => ({
+      ...point,
+      date: new Date(point.date)
+    }))
+
+    this.x.domain(d3.extent(points, d => d.date))
+    this.y0.domain([ 0, d3.max(points, d => d.price) ])
+    this.y1.domain([ 0, d3.max(points, d => d.interest) ])
+
+    svg.select('.graph__line--price')
+      .data([ points ])
+      .transition()
+      .attr('d', this.priceLine)
+
+    svg
+      .selectAll('.graph__line__point--price')
+      .data(points)
+      .transition()
+      .attr('cx', d => this.x(d.date))
+      .attr('cy', d => this.y0(d.price))
+
+    svg.select('.graph__line--interest')
+      .data([ points ])
+      .transition(1000)
+      .attr('d', this.interestLine)
+
+    svg.select('.graph__line__area--interest')
+      .data([ points ])
+      .transition()
+      .attr('d', this.interestArea)
+
+    svg.selectAll('.graph__line__point--interest')
+      .data(points)
+      .transition()
+      .attr('cx', d => this.x(d.date))
+      .attr('cy', d => this.y1(d.interest))
   }
 }
 
