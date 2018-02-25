@@ -1,22 +1,38 @@
-import { coins } from './lib/coins'
-import { module as app } from './state/app'
-import { Provider } from 'react-redux'
-import { registerCache } from './lib/cache'
 import { render } from 'react-dom'
-import { store } from './state'
-import * as d3 from 'd3'
 import Menu from './components/Menu'
-import Graph from './components/Graph'
+// import Graph from './components/Graph'
 import React from 'react'
+import { CoinConsumer, CoinProvider } from './components/CoinContext'
+import { LocationFallback } from './components/Location'
+
+const CoinColorObserver = () => (
+  <CoinConsumer>
+    {({ coin, isLoading }) => {
+      document.body.style.setProperty('--color-primary', coin.color)
+      return null
+    }}
+  </CoinConsumer>
+)
+
+// export { CoinProvider, CoinConsumer }
+
+const App = () => (
+  <CoinProvider>
+    <LocationFallback />
+    <CoinColorObserver />
+    <Menu />
+    <main>
+      <CoinConsumer>
+        {({ fetchCoin, coin, isLoading }) => (
+          <button onClick={() => fetchCoin('LTC', 'year')}>
+            Color: {coin && coin.name}
+          </button>
+        )}
+      </CoinConsumer>
+    </main>
+  </CoinProvider>
+)
 
 render((
-  <Provider store={store}>
-    <React.Fragment>
-      <Menu />
-      <main>
-        <Graph />
-      </main>
-    </React.Fragment>
-  </Provider>
+  <App />
 ), document.getElementById('root'))
-registerCache()

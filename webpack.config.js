@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: relative('dist'),
     filename: '[hash].[name].js',
-    publicPath: ''
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -49,6 +49,7 @@ module.exports = {
         target: 'https://trends.google.com',
         changeOrigin: true
       }
-    }
+    },
+    historyApiFallback: true
   }
 }

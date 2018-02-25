@@ -1,33 +1,33 @@
 import { coins } from '../lib/coins'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { module as app } from '../state/app'
 import React from 'react'
+import Location from './Location'
 
-const items = Array.from(coins.entries()).map(([ symbol, coin ]) => ({
-  symbol,
+const items = Array.from(coins.entries()).map(([ code, coin ]) => ({
+  code,
   ...coin
 }))
 
-const Menu = ({ currentCoin, setCurrentCoin }) => (
-  <aside className='menu'>
-    {items.map((item, i) => (
-      <div
-        key={item.symbol}
-        onClick={() => setCurrentCoin(item.symbol)}
-        className={`menu__item ${currentCoin === item.symbol ? 'menu__item--active' : ''}`}
-      >
-        <item.icon /> <span>{item.name}</span>
-      </div>
-    ))}
-  </aside>
+const MenuItem = ({ isActive, name, onClick, color, icon: Icon }) => (
+  <div onClick={onClick} className='menu__item' style={{ color: isActive && color }}>
+    <Icon /> <span>{name}</span>
+  </div>
 )
 
-export default connect(
-  state => ({
-    currentCoin: state.app.currentCoin
-  }),
-  dispatch => bindActionCreators({
-    setCurrentCoin: app.actions.setCurrentCoin
-  }, dispatch)
-)(Menu)
+const Menu = ({ setCurrentCoin }) => (
+  <Location>
+    {({ coinCode, goToCoin }) => (
+      <aside className='menu'>
+        {items.map(item => (
+          <MenuItem
+            {...item}
+            key={item.code}
+            isActive={item.code === coinCode}
+            onClick={() => goToCoin(item.code)}
+          />
+        ))}
+      </aside>
+    )}
+  </Location>
+)
+
+export default Menu

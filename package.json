@@ -5,9 +5,11 @@
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
+    "create-react-context": "^0.1.6",
     "cryptocoins-icons": "^2.7.0",
     "d3": "^4.13.0",
     "google-trends-api": "^4.6.0",
+    "history": "^4.7.2",
     "lodash.uniq": "^4.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -28,10 +30,10 @@
     "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "rimraf": "^2.6.2",
     "svg-react-loader": "^0.4.5",
-    "webpack": "^4.0.0-beta.2",
+    "webpack": "^4.0.0",
     "webpack-cli": "^2.0.6",
     "webpack-dev-server": "3.0.0-beta.1",
     "workbox-webpack-plugin": "^2.1.2",
-    "worker-loader": "nickbreaton/worker-loader#f4d105"
+    "worker-loader": "^1.1.1"
   }
 }
