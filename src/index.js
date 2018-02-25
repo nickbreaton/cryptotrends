@@ -1,6 +1,6 @@
 import { render } from 'react-dom'
 import Menu from './components/Menu'
-// import Graph from './components/Graph'
+import Graph from './components/Graph'
 import React from 'react'
 import { CoinConsumer, CoinProvider } from './components/CoinContext'
 import { LocationFallback } from './components/Location'
@@ -22,13 +22,7 @@ const App = () => (
     <CoinColorObserver />
     <Menu />
     <main>
-      <CoinConsumer>
-        {({ fetchCoin, coin, isLoading }) => (
-          <button onClick={() => fetchCoin('LTC', 'year')}>
-            Color: {coin && coin.name}
-          </button>
-        )}
-      </CoinConsumer>
+      <Graph />
     </main>
   </CoinProvider>
 )

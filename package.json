@@ -14,10 +14,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
-    "redux-box": "nickbreaton/redux-box#b17a3fe",
-    "redux-persist": "^5.9.1",
-    "redux-worker-middleware": "^1.0.0",
     "xhook": "^1.4.7"
   },
   "devDependencies": {

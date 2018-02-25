@@ -1,27 +1,21 @@
 import * as d3 from 'd3'
 import React, { Component } from 'react'
-import { store } from '../state'
 import { coins } from '../lib/coins'
+import { CoinConsumer } from './CoinContext'
 
 class Graph extends Component {
-  componentDidMount() {
-    this.unsub = store.subscribe(this.graph)
-    window.addEventListener('resize', this.graph)
-  }
-  componentWillUnmount() {
-    this.unsub()
-    window.removeEventListener('resize', this.graph)
-  }
   render() {
-    this.graph()
     return (
-      <svg ref={svg => this.svg = svg} className='graph' />
+      <React.Fragment>
+        <svg ref={svg => this.svg = svg} className='graph' />
+        <CoinConsumer>
+          {state => this.graph(state) || null}
+        </CoinConsumer>
+      </React.Fragment>
     )
   }
-  graph = () => {
+  graph = ({ isLoading, points, coin }) => {
     window.requestAnimationFrame(() => {
-      let { app: { isLoading, points, currentCoin } } = store.getState()
-
       // do no proceed if missing data
       if (!this.svg || isLoading) return
 

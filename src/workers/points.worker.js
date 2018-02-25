@@ -1,6 +1,5 @@
 import { fetchGoogleTrendHistoricalInterest } from '../lib/trends'
 import { fetchPoloniexHistoricalPrice } from '../lib/poloniex'
-import { module } from '../state/app'
 import { parseUnixTimestamp } from '../lib/util'
 import uniq from 'lodash.uniq'
 
