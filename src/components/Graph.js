@@ -1,9 +1,8 @@
 import { CoinConsumer } from './CoinContext'
 import { coins } from '../lib/coins'
-import { WindowSize } from 'react-fns'
 import * as d3 from 'd3'
-import React, { Component } from 'react'
 import debounce from 'lodash.debounce'
+import React, { Component } from 'react'
 
 class Graph extends Component {
   debounceRate = 1000 / 60
@@ -16,6 +15,7 @@ class Graph extends Component {
   }
 
   init() {
+    this.svg.innerHTML = ''
     const svg = d3.select(this.svg)
     const width = svg.node().getBoundingClientRect().width - this.padding
     const height = svg.node().getBoundingClientRect().height - this.padding
@@ -136,21 +136,24 @@ class Graph extends Component {
     this.initial = false
   }, this.debounceRate)
 
+  componentDidMount() {
+    window.addEventListener('resize', () => {
+      this.initial = true
+      this.forceUpdate()
+    })
+  }
+
   render() {
     return (
-      <WindowSize>
-        {() => (
-          <React.Fragment>
-            <svg ref={svg => this.svg = svg} className='graph' />
-            <CoinConsumer>
-              {state => {
-                this.update(state)
-                return null
-              }}
-            </CoinConsumer>
-          </React.Fragment>
-        )}
-      </WindowSize>
+      <React.Fragment>
+        <svg ref={svg => this.svg = svg} className='graph' />
+        <CoinConsumer>
+          {state => {
+            this.update(state)
+            return null
+          }}
+        </CoinConsumer>
+      </React.Fragment>
     )
   }
 }
