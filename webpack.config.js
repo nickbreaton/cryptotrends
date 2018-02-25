@@ -51,5 +51,11 @@ module.exports = {
       }
     },
     historyApiFallback: true
+  },
+  optimization: {
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'all'
+    }
   }
 }

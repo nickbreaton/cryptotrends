@@ -55,11 +55,6 @@ main {
   fill: var(--color-secondary);
 }
 
-.graph__line__area--price {
-  fill: var(--color-primary);
-  opacity: 0;
-}
-
 .graph__line__area--interest {
   fill: var(--color-secondary);
   opacity: 0.5;
