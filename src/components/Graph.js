@@ -1,17 +1,22 @@
+import { CoinConsumer } from './CoinContext'
+import { coins } from '../lib/coins'
+import { WindowSize } from 'react-fns'
 import * as d3 from 'd3'
 import React, { Component } from 'react'
-import { coins } from '../lib/coins'
-import { CoinConsumer } from './CoinContext'
 
 class Graph extends Component {
   render() {
     return (
-      <React.Fragment>
-        <svg ref={svg => this.svg = svg} className='graph' />
-        <CoinConsumer>
-          {state => this.graph(state) || null}
-        </CoinConsumer>
-      </React.Fragment>
+      <WindowSize>
+        {() => (
+          <React.Fragment>
+            <svg ref={svg => this.svg = svg} className='graph' />
+            <CoinConsumer>
+              {state => this.graph(state) || null}
+            </CoinConsumer>
+          </React.Fragment>
+        )}
+      </WindowSize>
     )
   }
   graph = ({ isLoading, points, coin }) => {
