@@ -8,6 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <script>
+    if (location.href.includes('http://') && location.href.includes('netlify.com')) {
+      location = location.href.replace('http://', 'https://')
+    }
+  </script>
   <div id="root"></div>
 </body>
 </html>
