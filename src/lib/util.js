@@ -1,4 +1,5 @@
 import { version } from '../../package.json'
+import shortNumber from 'short-number'
 
 export const parseUnixTimestamp = timestamp => {
   return new Date(+timestamp * 1000)
@@ -23,4 +24,14 @@ export const generatePersistKey = (coinCode, timeCode) => {
   const mm = d.getMonth() + 1
   const yyyy = d.getFullYear()
   return `${version}::${dd}.${mm}.${yyyy}::${coinCode}.${timeCode}`
+}
+
+export const formatDollar = points => d => {
+  // format zero
+  const centerIndex = Math.floor(points.length / 2)
+  if (d === 0 && points[centerIndex].price >= 10) return '$0'
+  // format other
+  let num = shortNumber(d)
+  if (typeof num === 'number' && num < 10) num = num.toFixed(2)
+  return '$' + num
 }

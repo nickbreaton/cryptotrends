@@ -1,5 +1,6 @@
 import { CoinConsumer } from './CoinContext'
 import { coins } from '../lib/coins'
+import { formatDollar } from '../lib/util'
 import * as d3 from 'd3'
 import debounce from 'lodash.debounce'
 import React, { Component } from 'react'
@@ -119,6 +120,7 @@ class Graph extends Component {
 
     this.leftAxisElement.call(
       d3.axisLeft(this.y0)
+        .tickFormat(formatDollar(this.points))
     )
 
     this.rightAxisElement.call(

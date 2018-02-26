@@ -5256,6 +5256,10 @@ shelljs@^0.7.0:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+short-number@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/short-number/-/short-number-1.0.6.tgz#582246c8b6148d9f6f9a79e9e9f6b42b1ebebfd7"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
