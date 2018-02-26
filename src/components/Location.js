@@ -13,7 +13,7 @@ const timeCodes = [
 
 const getCodes = () => {
   const [_, coinCode, timeCode ] = history.location.pathname.split('/')
-  return { coinCode, timeCode }
+  return { coinCode, timeCode: 'year' }
 }
 
 const goToCoin = code => {
@@ -21,10 +21,10 @@ const goToCoin = code => {
   history.push(history.location.pathname.replace(coinCode, code))
 }
 
-const goToTime = code => {
-  const { timeCode } = getCodes()
-  history.push(history.location.pathname.replace(timeCode, code))
-}
+// const goToTime = code => {
+//   const { timeCode } = getCodes()
+//   history.push(history.location.pathname.replace(timeCode, code))
+// }
 
 class Location extends Component {
   state = {
@@ -45,7 +45,7 @@ class Location extends Component {
     return this.props.children({
       ...this.state,
       goToCoin,
-      goToTime
+      // goToTime
     })
   }
 }
@@ -60,8 +60,8 @@ class LocationFallback extends Component {
   }
   fallback = () => {
     const { coinCode, timeCode } = getCodes()
-    if (!coins.has(coinCode) || !timeCodes.includes(timeCode)) {
-      history.replace('/BTC/year')
+    if (!coins.has(coinCode)) { // || !timeCodes.includes(timeCode)) {
+      history.replace('/BTC')
     }
   }
   render() {
