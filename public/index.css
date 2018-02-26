@@ -14,8 +14,7 @@
 }
 
 body {
-  background-color: var(--color-background);
-  height: 100vh;
+  background-color: var(--color-secondary);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -23,7 +22,10 @@ body {
 }
 
 #root {
-  display: flex;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
 }
 
 main {
@@ -31,7 +33,8 @@ main {
   flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: var(--padding) 1rem;
+  background: var(--color-background);
 }
 
 .graph {
@@ -79,8 +82,19 @@ main {
 
 .graph__axis text {
   fill: var(--color-secondary);
-  transform: translateX(-2px);
   font-size: 0.75rem;
+}
+
+.graph__axis--price text {
+  transform: translateX(-3px);
+}
+
+.graph__axis--interest text {
+  transform: translateX(3px);
+}
+
+.graph__axis--date text {
+  transform: translateY(3px);
 }
 
 .menu {
@@ -88,11 +102,11 @@ main {
   display: inline-flex;
   padding: 4rem;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 
 .menu__item {
-  color: var(--color-background);
+  color: #3d465c; /* derivative of --color-background */
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -150,14 +164,3 @@ main {
   color: white;
   opacity: 0.33;
 }
-
-/* @media (max-width: 60rem) {
-  .menu {
-    display: none;
-  }
-
-  .graph {
-    height: 20rem;
-    margin: 0;
-  }
-} */

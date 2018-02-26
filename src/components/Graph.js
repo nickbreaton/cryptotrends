@@ -31,15 +31,15 @@ class Graph extends Component {
 
     this.bottomAxisElement = svg.append('g')
       .style('transform', `translateY(calc(${height}px + 1rem))`)
-      .attr('class', 'graph__axis')
+      .attr('class', 'graph__axis graph__axis--date')
 
     this.rightAxisElement = svg.append('g')
       .style('transform', `translateX(calc(${width}px + 1rem))`)
-      .attr('class', 'graph__axis')
+      .attr('class', 'graph__axis graph__axis--interest')
 
     this.leftAxisElement = svg.append('g')
       .style('transform', `translateX(calc(${this.padding}px - 1rem))`)
-      .attr('class', 'graph__axis')
+      .attr('class', 'graph__axis graph__axis--price')
 
     // DATA
 
