@@ -35,3 +35,7 @@ export const formatDollar = points => d => {
   if (typeof num === 'number' && num < 10) num = num.toFixed(2)
   return '$' + num
 }
+
+export const getCustomProperty = (property, element = document.body) => {
+  return window.getComputedStyle(element).getPropertyValue(property)
+}

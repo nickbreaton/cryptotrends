@@ -1,6 +1,6 @@
 import { CoinConsumer } from './CoinContext'
 import { coins } from '../lib/coins'
-import { formatDollar } from '../lib/util'
+import { formatDollar, getCustomProperty } from '../lib/util'
 import * as d3 from 'd3'
 import debounce from 'lodash.debounce'
 import React, { Component } from 'react'
@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 class Graph extends Component {
   debounceRate = 1000 / 60
   initial = true
-  padding = 75
+  padding = +getCustomProperty('--padding').replace('px', '')
   pointRadius = 3.5
 
   get duration() {
