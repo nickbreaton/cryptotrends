@@ -68,7 +68,7 @@ main {
 }
 
 .graph__axis {
-  opacity: 0.66;
+  opacity: 0.85;
 }
 
 .graph__axis .domain,
