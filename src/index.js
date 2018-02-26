@@ -1,10 +1,11 @@
-import { render } from 'react-dom'
-import Menu from './components/Menu'
-import Graph from './components/Graph'
-import React from 'react'
 import { CoinConsumer, CoinProvider } from './components/CoinContext'
 import { LocationFallback } from './components/Location'
 import { registerCache } from './lib/cache'
+import { render } from 'react-dom'
+import Graph from './components/Graph'
+import Key from './components/Key'
+import Menu from './components/Menu'
+import React from 'react'
 
 const CoinColorObserver = () => (
   <CoinConsumer>
@@ -24,6 +25,7 @@ const App = () => (
     <Menu />
     <main>
       <Graph />
+      <Key />
     </main>
   </CoinProvider>
 )
