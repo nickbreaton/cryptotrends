@@ -41,6 +41,7 @@ module.exports = {
       swDest: relative('dist/sw.js'),
       clientsClaim: true,
       skipWaiting: true,
+      navigateFallback: '/index.html'
     })
   ],
   devServer: {
