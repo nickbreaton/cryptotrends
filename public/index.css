@@ -64,6 +64,22 @@ main {
   opacity: 0.5;
 }
 
+.graph__axis {
+  opacity: 0.66;
+}
+
+.graph__axis .domain,
+.graph__axis line {
+  stroke: var(--color-secondary);
+  stroke-width: 2px;
+}
+
+.graph__axis text {
+  fill: var(--color-secondary);
+  transform: translateX(-2px);
+  font-size: 0.75rem;
+}
+
 .menu {
   background: var(--color-secondary);
   display: inline-flex;

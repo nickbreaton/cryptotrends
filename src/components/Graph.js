@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 class Graph extends Component {
   debounceRate = 1000 / 60
   initial = true
-  padding = 45
+  padding = 75
   pointRadius = 3.5
 
   get duration() {
@@ -25,6 +25,20 @@ class Graph extends Component {
     this.x = d3.scaleTime().range([this.padding, width])
     this.y0 = d3.scaleLinear().range([height, this.padding])
     this.y1 = d3.scaleLinear().range([height, this.padding])
+
+    // AXES
+
+    this.bottomAxisElement = svg.append('g')
+      .style('transform', `translateY(calc(${height}px + 1rem))`)
+      .attr('class', 'graph__axis')
+
+    this.rightAxisElement = svg.append('g')
+      .style('transform', `translateX(calc(${width}px + 1rem))`)
+      .attr('class', 'graph__axis')
+
+    this.leftAxisElement = svg.append('g')
+      .style('transform', `translateX(calc(${this.padding}px - 1rem))`)
+      .attr('class', 'graph__axis')
 
     // DATA
 
@@ -96,6 +110,20 @@ class Graph extends Component {
     this.x.domain(d3.extent(this.points, d => d.date))
     this.y0.domain([ 0, d3.max(this.points, d => d.price) ])
     this.y1.domain([ 0, d3.max(this.points, d => d.interest) ])
+
+    // AXES
+
+    this.bottomAxisElement.call(
+      d3.axisBottom(this.x)
+    )
+
+    this.leftAxisElement.call(
+      d3.axisLeft(this.y0)
+    )
+
+    this.rightAxisElement.call(
+      d3.axisRight(this.y1)
+    )
 
     // INTEREST
 
