@@ -10,8 +10,6 @@ import Key from './components/Key'
 import Menu from './components/Menu'
 import React from 'react'
 
-
-
 const App = () => (
   <CoinProvider>
     <LocationFallback />
