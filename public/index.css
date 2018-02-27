@@ -33,7 +33,7 @@ main {
   flex: 1;
   flex-direction: column;
   align-items: center;
-  padding: var(--padding) 1rem;
+  padding: var(--padding) 3rem;
   background: var(--color-background);
 }
 
@@ -71,17 +71,17 @@ main {
 }
 
 .graph__axis {
-  opacity: 0.85;
+  opacity: 0.333;
 }
 
 .graph__axis .domain,
 .graph__axis line {
-  stroke: var(--color-secondary);
+  stroke: white;
   stroke-width: 2px;
 }
 
 .graph__axis text {
-  fill: var(--color-secondary);
+  fill: white;
   font-size: 0.75rem;
 }
 
