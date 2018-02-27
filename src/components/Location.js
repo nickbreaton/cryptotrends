@@ -18,7 +18,7 @@ const getCodes = () => {
 
 const goToCoin = code => {
   const { coinCode } = getCodes()
-  history.push(history.location.pathname.replace(coinCode, code))
+  history.replace(history.location.pathname.replace(coinCode, code))
 }
 
 // const goToTime = code => {
