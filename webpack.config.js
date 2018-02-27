@@ -17,6 +17,12 @@ module.exports = {
     filename: '[hash].[name].js',
     publicPath: '/'
   },
+  resolve: {
+    alias: {
+      // patch for `google-trends-api`
+      'https': relative('src/lib/https')
+    }
+  },
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
