@@ -42,7 +42,8 @@ module.exports = {
       globDirectory: 'dist',
       globPatterns: ['**/*'],
       globIgnores: [
-        '_redirects'
+        '_redirects',
+        '*.map'
       ],
       swDest: relative('dist/sw.js'),
       clientsClaim: true,
