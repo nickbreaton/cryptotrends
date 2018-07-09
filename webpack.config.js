@@ -38,13 +38,7 @@ module.exports = {
       filename: 'index.html',
       template: relative('src/index.html')
     }),
-    new WorkboxWebpackPlugin({
-      globDirectory: 'dist',
-      globPatterns: ['**/*'],
-      globIgnores: [
-        '_redirects',
-        '*.map'
-      ],
+    new WorkboxWebpackPlugin.GenerateSW({
       swDest: relative('dist/sw.js'),
       clientsClaim: true,
       skipWaiting: true,
