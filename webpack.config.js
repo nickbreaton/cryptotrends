@@ -48,14 +48,7 @@ module.exports = {
       navigateFallback: '/index.html'
     }),
     new NetlifyLambdaWebpackPlugin({
-      configOverrides: {
-        // runtimeChunk: false
-        optimization: {
-          splitChunks: false
-        }
-      },
       disablePlugins: [
-        Object,
         CopyWebpackPlugin,
         HtmlWebpackPlugin,
         WorkboxWebpackPlugin.GenerateSW

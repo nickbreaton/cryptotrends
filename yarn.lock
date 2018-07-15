@@ -144,12 +144,6 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
 
-"@types/raw-body@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@types/raw-body/-/raw-body-2.3.0.tgz#4a36548b88f53a7253509c65f26f96e2f5178fc1"
-  dependencies:
-    raw-body "*"
-
 "@types/require-from-string@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/require-from-string/-/require-from-string-1.2.0.tgz#c18cfc8a2c1a0259e5841d1fef2b5e9d01c64242"
@@ -3697,14 +3691,13 @@ neo-async@^2.5.0:
 
 "netlify-lambda-webpack-plugin@github:nickbreaton/netlify-lambda-webpack-plugin":
   version "0.0.1"
-  resolved "https://codeload.github.com/nickbreaton/netlify-lambda-webpack-plugin/tar.gz/dd1846dbd571b7650350ec9bac40264db57b60fb"
+  resolved "https://codeload.github.com/nickbreaton/netlify-lambda-webpack-plugin/tar.gz/48e6ab7a6bf3c42dfef1418b7678eeba022c23c6"
   dependencies:
     "@types/clone" "^0.1.30"
     "@types/fs-extra" "^5.0.4"
     "@types/js-base64" "^2.3.1"
     "@types/koa-mount" "^3.0.1"
     "@types/memory-fs" "^0.3.1"
-    "@types/raw-body" "^2.3.0"
     "@types/require-from-string" "^1.2.0"
     "@types/rimraf" "^2.0.2"
     "@types/webpack" "^4.4.5"
@@ -4256,15 +4249,6 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-raw-body@*, raw-body@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"
-  dependencies:
-    bytes "3.0.0"
-    http-errors "1.6.3"
-    iconv-lite "0.4.23"
-    unpipe "1.0.0"
-
 raw-body@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.2.tgz#bcd60c77d3eb93cde0050295c3f379389bc88f89"
@@ -4272,6 +4256,15 @@ raw-body@2.3.2:
     bytes "3.0.0"
     http-errors "1.6.2"
     iconv-lite "0.4.19"
+    unpipe "1.0.0"
+
+raw-body@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"
+  dependencies:
+    bytes "3.0.0"
+    http-errors "1.6.3"
+    iconv-lite "0.4.23"
     unpipe "1.0.0"
 
 rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
