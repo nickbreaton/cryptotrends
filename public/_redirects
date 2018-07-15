@@ -1,2 +1,0 @@
-/trends/api/*  https://trends.google.com/trends/api/:splat  200
-/*             /index.html                                  200
