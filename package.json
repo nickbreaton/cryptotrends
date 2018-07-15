@@ -2,7 +2,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "start": "webpack-dev-server --devtool source-map",
+    "start": "webpack-serve",
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
@@ -14,10 +14,12 @@
     "localforage": "^1.5.7",
     "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
+    "netlify-lambda-webpack-plugin": "github:nickbreaton/netlify-lambda-webpack-plugin",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-github-corner": "^2.1.0",
+    "serverless-http": "^1.6.0",
     "short-number": "^1.0.6",
     "xhook": "^1.4.7"
   },
@@ -29,11 +31,12 @@
     "copy-webpack-plugin": "4.5.2",
     "extract-text-webpack-plugin": "3.0.2",
     "html-webpack-plugin": "3.2.0",
+    "koa2-history-api-fallback": "^0.0.5",
     "rimraf": "^2.6.2",
     "svg-react-loader": "^0.4.5",
     "webpack": "4.15.1",
     "webpack-cli": "3.0.8",
-    "webpack-dev-server": "3.1.4",
+    "webpack-serve": "^2.0.2",
     "workbox-webpack-plugin": "3.3.1",
     "worker-loader": "2.0.0"
   }
