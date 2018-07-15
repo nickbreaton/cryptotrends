@@ -55,6 +55,7 @@ module.exports = {
         }
       },
       disablePlugins: [
+        Object,
         CopyWebpackPlugin,
         HtmlWebpackPlugin,
         WorkboxWebpackPlugin.GenerateSW
