@@ -2,26 +2,22 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "start": "webpack-serve",
+    "start": "webpack-dev-server --history-api-fallback",
     "build": "rimraf dist && webpack --mode production"
   },
   "dependencies": {
-    "create-react-context": "^0.1.6",
-    "cryptocoins-icons": "^2.7.0",
-    "d3": "^4.13.0",
-    "google-trends-api": "4.6.2",
+    "create-react-context": "^0.2.3",
+    "cryptocoins-icons": "^2.8.0",
+    "d3": "^5.7.0",
     "history": "^4.7.2",
-    "localforage": "^1.5.7",
+    "localforage": "^1.7.3",
     "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
-    "netlify-lambda-webpack-plugin": "github:nickbreaton/netlify-lambda-webpack-plugin",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-github-corner": "^2.1.0",
-    "serverless-http": "^1.6.0",
-    "short-number": "^1.0.6",
-    "xhook": "^1.4.7"
+    "prop-types": "^15.6.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-github-corner": "^2.3.0",
+    "short-number": "^1.0.6"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
@@ -29,14 +25,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "4.5.2",
-    "extract-text-webpack-plugin": "3.0.2",
     "html-webpack-plugin": "3.2.0",
-    "koa2-history-api-fallback": "^0.0.5",
     "rimraf": "^2.6.2",
     "svg-react-loader": "^0.4.5",
     "webpack": "4.15.1",
     "webpack-cli": "3.0.8",
-    "webpack-serve": "^2.0.2",
+    "webpack-dev-server": "^3.1.10",
     "workbox-webpack-plugin": "3.3.1",
     "worker-loader": "2.0.0"
   }

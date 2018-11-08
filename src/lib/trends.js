@@ -1,15 +1,7 @@
-import xhook from 'xhook'
-import GoogleTrendsAPI from 'google-trends-api'
-
-xhook.before(request => {
-  request.url = request.url.replace('https://trends.google.com', '')
-})
-
-export const fetchGoogleTrendHistoricalInterest = async (keyword, startDate) => {
-  const raw = await GoogleTrendsAPI.interestOverTime({
-    keyword,
-    startTime: startDate,
-    granularTimeResolution: true
-  })
-  return JSON.parse(raw).default.timelineData
+export const fetchGoogleTrendHistoricalInterest = (keyword, startDate) => {
+  const host = 'us-central1-nickbreaton.cloudfunctions.net'
+  const url = `https://${host}/trends-proxy?keyword=${keyword}&startDate=${startDate}`
+  return fetch(url)
+    .then(res => res.json())
+    .then(data => data.default.timelineData)
 }

@@ -1,9 +1,7 @@
 const path = require('path');
-const history = require('koa2-history-api-fallback');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const NetlifyLambdaWebpackPlugin = require('netlify-lambda-webpack-plugin/dist');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const relative = (...paths) => {
@@ -23,7 +21,7 @@ module.exports = {
   resolve: {
     alias: {
       // patch for `google-trends-api`
-      'https': relative('src/lib/https')
+    'https': relative('src/lib/https')
     }
   },
   module: {
@@ -46,13 +44,6 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/index.html'
-    }),
-    new NetlifyLambdaWebpackPlugin({
-      disablePlugins: [
-        CopyWebpackPlugin,
-        HtmlWebpackPlugin,
-        WorkboxWebpackPlugin.GenerateSW
-      ]
     })
   ],
   optimization: {
@@ -60,12 +51,14 @@ module.exports = {
     splitChunks: {
       chunks: 'all'
     }
-  }
-};
-
-module.exports.serve = {
-  add(app) {
-    app.use(NetlifyLambdaWebpackPlugin.serve());
-    app.use(history());
-  }
+  },
+  devServer: {
+    proxy: {
+      '/trends/api': {
+        target: 'https://trends.google.com',
+        changeOrigin: true
+      }
+    },
+    historyApiFallback: true
+  },
 };

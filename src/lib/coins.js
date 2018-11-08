@@ -1,7 +1,7 @@
 import BTC from 'cryptocoins-icons/SVG/BTC.svg'
 import ETH from 'cryptocoins-icons/SVG/ETH.svg'
 import LTC from 'cryptocoins-icons/SVG/LTC.svg'
-import STR from 'cryptocoins-icons/SVG/STR.svg'
+import XLM from 'cryptocoins-icons/SVG/XLM.svg'
 import XMR from 'cryptocoins-icons/SVG/XMR.svg'
 import XRP from 'cryptocoins-icons/SVG/XRP.svg'
 import ZEC from 'cryptocoins-icons/SVG/ZEC-alt.svg'
@@ -40,7 +40,7 @@ export const coins = new Map([
   ['STR', {
     code: 'STR',
     name: 'Stellar',
-    icon: STR,
+    icon: XLM,
     color: '#cef0fa'
   }],
   ['ZEC', {
@@ -50,4 +50,3 @@ export const coins = new Map([
     color: '#ce842a'
   }],
 ])
-
