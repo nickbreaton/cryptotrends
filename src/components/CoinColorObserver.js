@@ -1,13 +1,10 @@
-import { CoinConsumer } from './CoinContext'
-import React from 'react'
+import CoinContext from './CoinContext'
+import React, { useContext } from 'react'
 
-const CoinColorObserver = () => (
-  <CoinConsumer>
-    {({ coin, isLoading }) => {
-      document.body.style.setProperty('--color-primary', coin.color)
-      return null
-    }}
-  </CoinConsumer>
-)
+const CoinColorObserver = () => {
+  const { coin } = useContext(CoinContext)
+  document.body.style.setProperty('--color-primary', coin.color)
+  return null
+}
 
 export default CoinColorObserver

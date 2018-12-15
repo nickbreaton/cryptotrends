@@ -8,6 +8,7 @@ import GithubCorner from 'react-github-corner'
 import Graph from './components/Graph'
 import Key from './components/Key'
 import Menu from './components/Menu'
+import LoadingBoundary from './components/LoadingBoundary'
 import React from 'react'
 
 const App = () => (
@@ -16,8 +17,10 @@ const App = () => (
     <CoinColorObserver />
     <Menu />
     <main>
-      <Graph />
-      <Key />
+      <LoadingBoundary>
+        <Graph />
+        <Key />
+      </LoadingBoundary>
     </main>
     <GithubCorner
       href='https://github.com/nickbreaton/cryptotrends'
